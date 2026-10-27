@@ -1,0 +1,158 @@
+document.querySelectorAll(".titulo-acordeao").forEach(botao => {
+    botao.addEventListener("click", () => {
+        let conteudo = botao.nextElementSibling; //pegue o próximo elemento
+        let simbolo = botao.querySelector("span");
+
+        // Alterna entre block e none usando operador ternário
+        conteudo.style.display = conteudo.style.display === "block" ? "none" : "block";
+        simbolo.textContent = conteudo.style.display === "block" ? "−" : "+";
+    });
+});
+
+
+
+
+//QUIZ (DADOS E LÓGICA)
+const perguntas = [
+    {
+        pergunta: "O que é isomeria plana?",
+        alternativas: ["Fenômeno em que substâncias possuem fórmulas moleculares diferentes.", "Fenômeno em que substâncias possuem a mesma fórmula molecular, mas estruturas diferentes.", "Fenômeno em que substâncias possuem apenas átomos diferentes.", "Fenômeno em que substâncias apresentam sempre as mesmas propriedades."],
+        correta: 1,
+        explicacao: "A isomeria plana ocorre quando dois ou mais compostos apresentam a mesma fórmula molecular, mas diferem na maneira como seus átomos estão ligados, formando estruturas diferentes."
+    },
+    {
+        pergunta: "Qual tipo de isomeria ocorre entre o etanol e o dimetil éter?",
+        alternativas: ["Isomeria de cadeia.", "Isomeria de posição.", "Isomeria de função.", "Isomeria de compensação."],
+        correta: 2,
+        explicacao: "O etanol pertence à função álcool, enquanto o dimetil éter pertence à função éter. Apesar de apresentarem a mesma fórmula molecular (C₂H₆O), possuem grupos funcionais diferentes."
+    },
+    {
+        pergunta: "Qual tipo de isomeria ocorre entre o but-1-eno e o but-2-eno?",
+        alternativas: ["Isomeria de função.", "Isomeria de posição.", "Isomeria de cadeia.", "Isomeria de compensação."],
+        correta: 1,
+        explicacao: "Os dois compostos possuem a mesma fórmula molecular e a mesma função orgânica, mas a ligação dupla está localizada em posições diferentes na cadeia carbônica."
+    },
+    {
+        pergunta: "Qual alternativa apresenta um exemplo de isomeria de cadeia?",
+        alternativas: ["Butano e 2-metilpropano.", "Etanol e dimetil éter.", "Propanal e propanona.", "Propan-1-ol e propan-2-ol."],
+        correta: 0,
+        explicacao: "O butano possui cadeia carbônica normal, enquanto o 2-metilpropano apresenta cadeia ramificada. Os dois possuem a mesma fórmula molecular (C₄H₁₀), caracterizando a isomeria de cadeia."
+    },
+    {
+        pergunta: "Qual tipo de isomeria ocorre entre o propanal e a propanona?",
+        alternativas: ["Isomeria de posição.", "Isomeria de cadeia.", "Isomeria de compensação.", "Isomeria de função."],
+        correta: 3,
+        explicacao: "O propanal é um aldeído, enquanto a propanona é uma cetona. Como apresentam a mesma fórmula molecular (C₃H₆O), mas pertencem a funções orgânicas diferentes, são isômeros de função."
+    },
+    {
+        pergunta: "O que caracteriza a isomeria de compensação, também chamada de metameria?",
+        alternativas: ["A mudança da posição da ligação dupla.", "A diferença na distribuição dos carbonos em torno de um heteroátomo.", "A presença de funções orgânicas diferentes.", "A mudança na fórmula molecular dos compostos."],
+        correta: 1,
+        explicacao: "Na isomeria de compensação, os compostos apresentam a mesma fórmula molecular e a mesma função orgânica, mas possuem diferentes distribuições das cadeias carbônicas ao redor de um heteroátomo, como o oxigênio ou o nitrogênio."
+    },
+    {
+        pergunta: "Qual alternativa apresenta um par de compostos que possuem isomeria de posição?",
+        alternativas: ["Monotremados", "Marsupiais", "Placentários", "Roedores"],
+        correta: 1,
+        explicacao: "Os cangurus são marsupiais, mamíferos cujos filhotes nascem pouco desenvolvidos e continuam seu desenvolvimento, geralmente, dentro de uma bolsa chamada marsúpio."
+    },
+    {
+        pergunta: "Dois compostos apresentam a mesma fórmula molecular (C₄H₁₀O): butan-1-ol e etoxietano. Qual tipo de isomeria existe entre eles?",
+        alternativas: ["Permitir a respiração", "Produzir leite", "Ajudar no isolamento térmico e na proteção do corpo", "Permitir a reprodução"],
+        correta: 2,
+        explicacao: "Os pelos ajudam a conservar o calor corporal e também podem desempenhar funções de proteção e percepção do ambiente, dependendo da espécie."
+    },
+    {
+        pergunta: "Dois compostos possuem a mesma fórmula molecular e a mesma função orgânica, mas apresentam diferenças na estrutura da cadeia carbônica. Qual tipo de isomeria ocorre nesse caso?",
+        alternativas: ["Canguru, ornitorrinco e coala", "Cachorro, cavalo e elefante", "Ornitorrinco, equidna e cachorro", "Canguru, gato e equidna"],
+        correta: 1,
+        explicacao: "Esses três animais são mamíferos placentários. Neles, a placenta permite a troca de nutrientes, gases e resíduos entre a mãe e o embrião durante o desenvolvimento no útero."
+    },
+    {
+        pergunta: "Qual alternativa diferencia corretamente a isomeria de posição da isomeria de compensação?",
+        alternativas: ["Porque conseguem voar", "Porque possuem asas cobertas por penas", "Porque possuem pelos e glândulas mamárias", "Porque vivem principalmente durante a noite"],
+        correta: 2,
+        explicacao: "Apesar de voarem, os morcegos são mamíferos porque possuem pelos e glândulas mamárias que produzem leite para os filhotes. Suas asas são formadas por membranas de pele sustentadas por dedos alongados, e não por penas."
+    }
+];
+
+let perguntaAtual = 0;
+let pontos = 0;
+
+function mostrarPergunta() {
+    let pergunta = perguntas[perguntaAtual];
+    
+    document.getElementById("progresso").textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+    document.getElementById("pergunta").textContent = pergunta.pergunta;
+    
+    let alternativasContainer = document.getElementById("alternativas");
+    alternativasContainer.innerHTML = ""; // Limpa anterior
+
+    pergunta.alternativas.forEach((alternativa, indice) => {
+        let botao = document.createElement("button");
+        botao.textContent = alternativa;
+        botao.onclick = () => verificarResposta(indice);
+        alternativasContainer.appendChild(botao);
+    });
+
+    document.getElementById("feedback").textContent = "";
+    document.getElementById("proxima").style.display = "none";
+}
+
+function verificarResposta(indice) {
+    let pergunta = perguntas[perguntaAtual];
+    let botoes = document.querySelectorAll("#alternativas button");
+
+    botoes.forEach(btn => btn.disabled = true);
+
+    if (indice === pergunta.correta) {
+        botoes[indice].classList.add("correta");
+        document.getElementById("feedback").textContent = `Resposta correta! ${pergunta.explicacao}`;
+        pontos++;
+    } else {
+        botoes[indice].classList.add("errada");
+        botoes[pergunta.correta].classList.add("correta");
+        document.getElementById("feedback").textContent = `Resposta incorreta. ${pergunta.explicacao}`;
+    }
+
+    document.getElementById("proxima").style.display = "block";
+}
+
+function proximaPergunta() {
+    perguntaAtual++;
+    if (perguntaAtual < perguntas.length) {
+        mostrarPergunta();
+    } else {
+        mostrarResultado();
+    }
+}
+
+function mostrarResultado() {
+    let msg = pontos === perguntas.length ? "Excelente! Você acertou todas!" : 
+              pontos >= 7 ? "Muito bom! Ótimo conhecimento." : "Vale a pena revisar o conteúdo.";
+
+    document.getElementById("quiz-container").innerHTML = `
+        <h3>Resultado final</h3>
+        <p>Você acertou <strong>${pontos}</strong> de <strong>${perguntas.length}</strong> questões.</p>
+        <p>${msg}</p>
+        <button id='refazer' onclick='refazerQuiz()'>Refazer Quiz</button>
+    `;
+}
+
+function refazerQuiz() {
+    perguntaAtual = 0;
+    pontos = 0;
+    document.getElementById("quiz-container").innerHTML = `
+        <p id="progresso"></p>
+        <h3 id="pergunta"></h3>
+        <div id="alternativas"></div>
+        <p id="feedback"></p>
+        <button id="proxima" onclick="proximaPergunta()">Próxima pergunta</button>
+    `;
+    mostrarPergunta();
+}
+
+// Inicialização automática do Quiz
+if (document.getElementById("quiz-container")) {
+    mostrarPergunta();
+}
