@@ -52,27 +52,27 @@ const perguntas = [
     },
     {
         pergunta: "Qual alternativa apresenta um par de compostos que possuem isomeria de posição?",
-        alternativas: ["Monotremados", "Marsupiais", "Placentários", "Roedores"],
+        alternativas: ["Etanol e dimetil éter.", "Butano e 2-metilpropano.", "Propan-1-ol e propan-2-ol.", "Propanal e propanona."],
         correta: 1,
-        explicacao: "Os cangurus são marsupiais, mamíferos cujos filhotes nascem pouco desenvolvidos e continuam seu desenvolvimento, geralmente, dentro de uma bolsa chamada marsúpio."
+        explicacao: "Os dois compostos são álcoois com a mesma fórmula molecular (C₃H₈O), mas o grupo hidroxila (OH) está ligado a carbonos diferentes: no carbono 1, no propan-1-ol, e no carbono 2, no propan-2-ol."
     },
     {
         pergunta: "Dois compostos apresentam a mesma fórmula molecular (C₄H₁₀O): butan-1-ol e etoxietano. Qual tipo de isomeria existe entre eles?",
-        alternativas: ["Permitir a respiração", "Produzir leite", "Ajudar no isolamento térmico e na proteção do corpo", "Permitir a reprodução"],
-        correta: 2,
-        explicacao: "Os pelos ajudam a conservar o calor corporal e também podem desempenhar funções de proteção e percepção do ambiente, dependendo da espécie."
+        alternativas: ["Isomeria de cadeia.", "Isomeria de posição.", "Isomeria de compensação.", "Isomeria de função."],
+        correta: 3,
+        explicacao: "O butan-1-ol pertence à função álcool, enquanto o etoxietano pertence à função éter. Como possuem a mesma fórmula molecular, mas diferentes funções orgânicas, apresentam isomeria de função."
     },
     {
         pergunta: "Dois compostos possuem a mesma fórmula molecular e a mesma função orgânica, mas apresentam diferenças na estrutura da cadeia carbônica. Qual tipo de isomeria ocorre nesse caso?",
-        alternativas: ["Canguru, ornitorrinco e coala", "Cachorro, cavalo e elefante", "Ornitorrinco, equidna e cachorro", "Canguru, gato e equidna"],
+        alternativas: ["Isomeria de função.", "Isomeria de cadeia.", "Isomeria de posição.", "Isomeria de compensação."],
         correta: 1,
-        explicacao: "Esses três animais são mamíferos placentários. Neles, a placenta permite a troca de nutrientes, gases e resíduos entre a mãe e o embrião durante o desenvolvimento no útero."
+        explicacao: "A isomeria de cadeia acontece quando os compostos apresentam a mesma fórmula molecular e a mesma função orgânica, mas diferem na organização da cadeia carbônica, que pode ser normal ou ramificada, por exemplo."
     },
     {
         pergunta: "Qual alternativa diferencia corretamente a isomeria de posição da isomeria de compensação?",
-        alternativas: ["Porque conseguem voar", "Porque possuem asas cobertas por penas", "Porque possuem pelos e glândulas mamárias", "Porque vivem principalmente durante a noite"],
+        alternativas: ["Na isomeria de posição, muda a função orgânica; na compensação, muda a fórmula molecular.", "Na isomeria de posição, muda a cadeia principal; na compensação, muda a ligação dupla.", "Na isomeria de posição, muda a localização de uma insaturação ou grupo funcional; na compensação, muda a distribuição das cadeias em torno de um heteroátomo.", "Na isomeria de posição, os compostos possuem fórmulas moleculares diferentes; na compensação, são iguais."],    
         correta: 2,
-        explicacao: "Apesar de voarem, os morcegos são mamíferos porque possuem pelos e glândulas mamárias que produzem leite para os filhotes. Suas asas são formadas por membranas de pele sustentadas por dedos alongados, e não por penas."
+        explicacao: "Na isomeria de posição, uma ligação dupla, tripla ou um grupo funcional ocupa posições diferentes na estrutura. Já na isomeria de compensação, a distribuição dos carbonos ao redor de um heteroátomo é diferente, mantendo a mesma fórmula molecular e a mesma função orgânica."
     }
 ];
 
